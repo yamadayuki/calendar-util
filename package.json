@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Calendar util",
   "scripts": {
-    "check": "npm run lint && npm run test",
+    "check": "npm run test -- --reporter min && npm run lint-fix",
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
     "test": "NODE_ENV=test mocha --compilers js:babel-register --recursive $(find test -name '*.spec.js')",

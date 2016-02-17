@@ -274,6 +274,18 @@ describe('Calendar', () => {
       expect(cal.locale).to.equal('fr');
     });
 
+    it('change member variable dependent on changing locale', () => {
+      expect(cal).to.have.ownProperty('locale');
+      var fn = () => cal.setLocale('fr');
+      expect(fn).to.change(cal, 'monthString');
+    });
+
+    it('change member variable dependent on changing locale', () => {
+      expect(cal).to.have.ownProperty('locale');
+      var fn = () => cal.setLocale('fr');
+      expect(fn).to.change(cal, 'dayString');
+    });
+
     it('validate locale to be string', () => {
       expect(cal).to.have.ownProperty('locale');
       expect(cal.locale).to.equal('en');
