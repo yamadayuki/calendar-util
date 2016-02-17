@@ -3,17 +3,22 @@ import Calendar, {YearError, MonthError, DayError} from '../lib/calendar';
 
 describe('Calendar', () => {
   describe('constructor', () => {
-    it('initialize with startDay', () => {
+    it('initialize', () => {
       var cal = new Calendar();
       expect(cal).to.have.ownProperty('startDay');
+      expect(cal).to.have.ownProperty('year');
+      expect(cal).to.have.ownProperty('month');
+      expect(cal).to.have.ownProperty('date');
+      expect(cal).to.have.ownProperty('day');
+      expect(cal).to.have.ownProperty('dayString');
     });
 
-    it('is initialized startDay with 0', () => {
+    it('initialize with startDay = 0', () => {
       var cal = new Calendar();
       expect(cal.startDay).to.equal(0);
     });
 
-    it('initialize with 1', () => {
+    it('initialize with startDay = 1', () => {
       var cal = new Calendar(1);
       expect(cal).to.have.ownProperty('startDay');
       expect(cal.startDay).to.equal(1);
@@ -33,7 +38,7 @@ describe('Calendar', () => {
         cal = new Calendar();
       });
 
-      it('fnialize with 0', () => {
+      it('inialize with 0', () => {
         expect(cal).to.have.ownProperty('startDay');
         expect(cal.startDay).to.equal(0);
       });
@@ -60,7 +65,7 @@ describe('Calendar', () => {
         cal = new Calendar(1);
       });
 
-      it('fnialize with 1', () => {
+      it('inialize with 1', () => {
         expect(cal).to.have.ownProperty('startDay');
         expect(cal.startDay).to.equal(1);
       });
@@ -191,6 +196,14 @@ describe('Calendar', () => {
     it('validate month number out of the range', () => {
       var fn = () => cal.monthDates(2016, 13);
       expect(fn).to.throw(MonthError);
+    });
+
+    it('get the array of the dates of current month without arguments', () => {
+      var current = new Date();
+      var weeks = cal.days();
+      var currentWeeks = cal.days(current.getFullYear(), current.getMonth());
+      expect(weeks).to.be.a('array');
+      expect(weeks.join(' ')).to.deep.equal(currentWeeks.join(' '));
     });
   });
 
