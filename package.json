@@ -1,0 +1,24 @@
+{
+  "name": "calendar-util",
+  "version": "0.1.0",
+  "description": "Calendar util",
+  "scripts": {
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix .",
+    "test": "NODE_ENV=test mocha --compilers js:babel-register --recursive $(find test -name '*.spec.js')",
+    "test-watch": "npm run test -- --watch"
+  },
+  "author": "Yamada Yuki",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.2",
+    "babel-eslint": "^4.1.8",
+    "babel-preset-es2015": "^6.5.0",
+    "chai": "^3.5.0",
+    "eslint": "^2.1.0",
+    "eslint-config-google": "^0.4.0",
+    "mocha": "^2.4.5"
+  }
+}
