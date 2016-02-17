@@ -1,6 +1,5 @@
 import {expect} from 'chai';
-import Calendar,
-       {YearError, MonthError, DayError, LocaleError} from '../lib/calendar';
+import Calendar, {CalendarError} from '../lib/calendar';
 
 describe('Calendar', () => {
   describe('constructor', () => {
@@ -28,7 +27,7 @@ describe('Calendar', () => {
 
     it('raise Exception out of 0 to 6', () => {
       var fn = () => new Calendar(8);
-      expect(fn).to.throw(DayError);
+      expect(fn).to.throw(CalendarError);
     });
 
     it('initialize with locale = `fr`', () => {
@@ -131,22 +130,22 @@ describe('Calendar', () => {
 
     it('validate year with string', () => {
       var fn = () => cal.monthDates('2016', 2);
-      expect(fn).to.throw(YearError);
+      expect(fn).to.throw(CalendarError);
     });
 
     it('validate year number out of the range', () => {
       var fn = () => cal.monthDates(1192, 2);
-      expect(fn).to.throw(YearError);
+      expect(fn).to.throw(CalendarError);
     });
 
     it('validate month with string', () => {
       var fn = () => cal.monthDates(2016, '2');
-      expect(fn).to.throw(MonthError);
+      expect(fn).to.throw(CalendarError);
     });
 
     it('validate month number out of the range', () => {
       var fn = () => cal.monthDates(2016, 13);
-      expect(fn).to.throw(MonthError);
+      expect(fn).to.throw(CalendarError);
     });
   });
 
@@ -188,22 +187,22 @@ describe('Calendar', () => {
 
     it('validate year with string', () => {
       var fn = () => cal.monthDates('2016', 2);
-      expect(fn).to.throw(YearError);
+      expect(fn).to.throw(CalendarError);
     });
 
     it('validate year number out of the range', () => {
       var fn = () => cal.monthDates(1192, 2);
-      expect(fn).to.throw(YearError);
+      expect(fn).to.throw(CalendarError);
     });
 
     it('validate month with string', () => {
       var fn = () => cal.monthDates(2016, '2');
-      expect(fn).to.throw(MonthError);
+      expect(fn).to.throw(CalendarError);
     });
 
     it('validate month number out of the range', () => {
       var fn = () => cal.monthDates(2016, 13);
-      expect(fn).to.throw(MonthError);
+      expect(fn).to.throw(CalendarError);
     });
 
     it('get the array of the dates of current month without arguments', () => {
@@ -256,7 +255,7 @@ describe('Calendar', () => {
       expect(cal).to.have.ownProperty('startDay');
       expect(cal.startDay).to.equal(0);
       var fn = () => cal.setStartDay(8);
-      expect(fn).to.throw(DayError);
+      expect(fn).to.throw(CalendarError);
       expect(cal.startDay).to.equal(0);
     });
   });
@@ -279,7 +278,7 @@ describe('Calendar', () => {
       expect(cal).to.have.ownProperty('locale');
       expect(cal.locale).to.equal('en');
       var fn = () => cal.setLocale(123);
-      expect(fn).to.throw(LocaleError);
+      expect(fn).to.throw(CalendarError);
       expect(cal.locale).to.equal('en');
     });
   });
