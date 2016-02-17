@@ -1,5 +1,6 @@
 import {expect} from 'chai';
-import Calendar, {YearError, MonthError, DayError} from '../lib/calendar';
+import Calendar,
+       {YearError, MonthError, DayError, LocaleError} from '../lib/calendar';
 
 describe('Calendar', () => {
   describe('constructor', () => {
@@ -11,6 +12,7 @@ describe('Calendar', () => {
       expect(cal).to.have.ownProperty('date');
       expect(cal).to.have.ownProperty('day');
       expect(cal).to.have.ownProperty('dayString');
+      expect(cal).to.have.ownProperty('locale');
     });
 
     it('initialize with startDay = 0', () => {
@@ -27,6 +29,12 @@ describe('Calendar', () => {
     it('raise Exception out of 0 to 6', () => {
       var fn = () => new Calendar(8);
       expect(fn).to.throw(DayError);
+    });
+
+    it('initialize with locale = `fr`', () => {
+      var cal = new Calendar(0, 'fr');
+      expect(cal).to.have.ownProperty('locale');
+      expect(cal.locale).to.equal('fr');
     });
   });
 
@@ -250,6 +258,29 @@ describe('Calendar', () => {
       var fn = () => cal.setStartDay(8);
       expect(fn).to.throw(DayError);
       expect(cal.startDay).to.equal(0);
+    });
+  });
+
+  describe('setLocale', () => {
+    var cal;
+
+    beforeEach(() => {
+      cal = new Calendar();
+    });
+
+    it('change locale from en to fr', () => {
+      expect(cal).to.have.ownProperty('locale');
+      expect(cal.locale).to.equal('en');
+      cal.setLocale('fr');
+      expect(cal.locale).to.equal('fr');
+    });
+
+    it('validate locale to be string', () => {
+      expect(cal).to.have.ownProperty('locale');
+      expect(cal.locale).to.equal('en');
+      var fn = () => cal.setLocale(123);
+      expect(fn).to.throw(LocaleError);
+      expect(cal.locale).to.equal('en');
     });
   });
 });
