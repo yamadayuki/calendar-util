@@ -39,15 +39,13 @@ params: year(optional), month(optional)
 This method returns the string of the calendar.
 
 ```js
-var c = cal.days(); // Return the string of the calendar which is current year and month.
+var c = cal.calendar(); // Return the string of the calendar which is current year and month.
 console.log(c); // Feb, 2016
-// [
-//   [1, 2, 3, 4, 5, 6, 7],
-//   [8, 9, 10, 11, 12, 13, 14],
-//   [15, 16, 17, 18, 19, 20, 21],
-//   [22, 23, 24, 25, 26, 27, 28],
-//   [29, 0, 0, 0, 0, 0, 0]
-// ]
+//     1  2  3  4  5  6
+//  7  8  9 10 11 12 13
+// 14 15 16 17 18 19 20
+// 21 22 23 24 25 26 27
+// 28 29   
 ```
 
 ### `monthDates(year, month, dateFormatter, weekFormatter)`
